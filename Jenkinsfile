@@ -145,23 +145,34 @@ pipeline {
         )
       }
     }
-     stage('Update Manifest for test'){
-    steps{
-        dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
-            sh  "sed -i 's#replace#${imageName}#g' blue.yml"
-            sh "cat blue.yml"
-        }
-    }
-}	   
-	  
+   
+	    
+# stage('Update Manifest for test'){
+#    steps{
+#        dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
+ #           sh  "sed -i 's#replace#${imageName}#g' blue.yml"
+  #          sh "cat blue.yml"
+  #      }
+ #   }
+#}	
+
+ stage('Build Checkout') { 
+            steps { 
+              checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ckmine/Argocd-Project-Deployment.git']]])
+         }
+        } 
+	    
+	
 	 stage('commit & push'){
   steps{
-    dir("/var/lib/jenkins/workspace/jenkins-with-argocd"){
+    dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
+	sh  "sed -i 's#replace#${imageName}#g' blue.yml"         
+	sh "cat blue.yml"
         sh "git config --global user.email 'ck769184@gmail.com'"
-       // sh 'git remote add origin https://github.com/ckmine/Argocd-Project.git'
-        sh 'git add secret'
+       // sh 'git remote add origin https://github.com/ckmine/Argocd-Project-Deployment.git'
+        sh 'git add .'
         sh 'git commit -am "update ${imageName}"'
-        sh 'git push https://ckmine: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@github.com/ckmine/Argocd-Project.git main' 
+        sh 'git push https://ckmine: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@github.com/ckmine/Argocd-Project-Deployment.git HEAD:main' 
     }
     }
   }
