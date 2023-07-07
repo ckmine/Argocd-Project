@@ -156,7 +156,7 @@ pipeline {
    }
 }	
 */
- stage('Build Checkout') { 
+ stage('Build Checkout-argo') { 
             steps { 
               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ckmine/Argocd-Project-Deployment.git']]])
          }
