@@ -146,16 +146,16 @@ pipeline {
       }
     }
    
-	    
-# stage('Update Manifest for test'){
-#    steps{
-#        dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
- #           sh  "sed -i 's#replace#${imageName}#g' blue.yml"
-  #          sh "cat blue.yml"
-  #      }
- #   }
-#}	
-
+/*	    
+ stage('Update Manifest for test'){
+    steps{
+        dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
+           sh  "sed -i 's#replace#${imageName}#g' blue.yml"
+            sh "cat blue.yml"
+        }
+   }
+}	
+*/
  stage('Build Checkout') { 
             steps { 
               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ckmine/Argocd-Project-Deployment.git']]])
