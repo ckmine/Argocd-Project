@@ -18,7 +18,7 @@ pipeline {
     
     tools {
         maven 'maven3'
-	git 'git-tool'
+	//git 'git-tool'
     }
   
     stages { 
