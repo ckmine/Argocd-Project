@@ -166,8 +166,8 @@ pipeline {
 	 stage('commit & push'){
   steps{
     dir("/var/lib/jenkins/workspace/jenkins-with-argocd/"){
-	sh  "sed -i 's#replace#${imageName}#g' blue.yml"         
-	sh "cat blue.yml"
+	sh  "sed -i 's#replace#${imageName}#g' blue.yaml"         
+	sh "cat blue.yaml"
         sh "git config --global user.email 'ck769184@gmail.com'"
        // sh 'git remote add origin https://github.com/ckmine/argo-cd-deployment-part.git'
         sh 'git add .'
