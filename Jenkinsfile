@@ -158,7 +158,7 @@ pipeline {
 */
  stage('Build Checkout-argo') { 
             steps { 
-              checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ckmine/Argocd-Project-Deployment.git']]])
+              checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mineck1/Argocd-Project-Deployment.git']]])
          }
         } 
 	    
@@ -169,10 +169,10 @@ pipeline {
 	sh  "sed -i 's#replace#${imageName}#g' blue.yml"         
 	sh "cat blue.yml"
         sh "git config --global user.email 'ck769184@gmail.com'"
-       // sh 'git remote add origin https://github.com/ckmine/Argocd-Project-Deployment.git'
+       // sh 'git remote add origin https://github.com/mineck1/Argocd-Project-Deployment.git'
         sh 'git add .'
         sh 'git commit -am "update ${imageName}"'
-        sh 'git push https://ckmine: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@github.com/ckmine/Argocd-Project-Deployment.git HEAD:main' 
+        sh 'git push https://ckmine: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@github.com/mineck1/Argocd-Project-Deployment.git HEAD:main' 
     }
     }
   }
