@@ -165,7 +165,7 @@ pipeline {
 	
 	 stage('commit & push'){
   steps{
-    dir("/var/lib/jenkins/workspace/jenkins-with-argocd/secret"){
+    dir("/var/lib/jenkins/workspace/jenkins-with-argocd/"){
 	sh  "sed -i 's#replace#${imageName}#g' blue.yml"         
 	sh "cat blue.yml"
         sh "git config --global user.email 'ck769184@gmail.com'"
