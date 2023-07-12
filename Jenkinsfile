@@ -158,14 +158,14 @@ pipeline {
 */
  stage('Build Checkout-argo') { 
             steps { 
-              checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ckmine/argo-cd-deployment-part.git']]])
-         }
+             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-new-update', url: 'https://github.com/ckmine/argo-cd-deployment-part.git']])       
+	    }
         } 
 	    
 	
 	 stage('commit & push'){
   steps{
-	 withCredentials([gitUsernamePassword(credentialsId: 'gitcred', gitToolName: 'git')]) 
+	 withCredentials([gitUsernamePassword(credentialsId: 'git-new-update', gitToolName: 'git')]) 
     dir("/var/lib/jenkins/workspace/jenkins-with-argocd"){
         sh  "sed -i 's#replace#${imageName}#g' blue.yaml"         
 	sh "cat blue.yaml"   
