@@ -165,14 +165,14 @@ pipeline {
 	
 	 stage('commit & push'){
   steps{
-    dir("/var/lib/jenkins/workspace/jenkins-with-argocd/"){
-	sh  "sed -i 's#replace#${imageName}#g' blue.yaml"         
-	sh "cat blue.yaml"
-        sh "git config --global user.email 'ck769184@gmail.com'"
-       // sh 'git remote add origin https://github.com/ckmine/argo-cd-deployment-part.git'
-        sh 'git add .'
+	 withCredentials([gitUsernamePassword(credentialsId: 'gitcred', gitToolName: 'git')]) 
+    dir("/var/lib/jenkins/workspace/jenkins-with-argocd"){
+        sh  "sed -i 's#replace#${imageName}#g' blue.yaml"         
+	sh "cat blue.yaml"   
+        sh 'git add blue.yaml'
         sh 'git commit -am "update ${imageName}"'
-        sh 'git push https://ckmine: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@github.com/ckmine/argo-cd-deployment-part.git HEAD:main' 
+        sh 'remote -v'
+        sh 'git push https://github.com/ckmine/argo-cd-deployment-part.git HEAD:main' 
     }
     }
   }
