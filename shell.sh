@@ -1,5 +1,6 @@
 #! /bin/bash
-cd /var/lib/jenkins/workspace/jenkins-with-argocd/
+#cd /var/lib/jenkins/workspace/jenkins-with-argocd/
+cd /var/lib/jenkins/workspace/test-argo/
 sudo su - jenkins -s/bin/bash
 #docker logout   masternnode.mine.com
  docker login -u admin --password-stdin Harbor12345 masternode.mine.com
